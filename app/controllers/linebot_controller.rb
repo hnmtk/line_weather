@@ -62,7 +62,7 @@ class LinebotController < ApplicationController
             end
           end
         else
-          push = "(　　๑　　╹　　◡　　╹　　๑　　)"
+          push = "(　๑　╹　◡　╹　๑　)"
         end
         message = {
           type: 'text',
