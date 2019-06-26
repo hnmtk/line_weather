@@ -55,15 +55,13 @@ class LinebotController < ApplicationController
             tempyesterday = doc.elements[xpath + 'info/temperature/range'].text
             tempdifference = temptoday.to_i - tempyesterday.to_i
 
-            testmessage = "test中なの。騒しくてごめんね＞＜"
-            date = doc.elements['weatherforecast/pubDate'].text
             test1 = "今日は昨日の気温と同じくらいだよ〜"
             if tempdifference <= -3
               test1 = "今日は昨日より少し寒いよ"
             elsif tempdifference >= 3
               test1 = "今日は昨日より少し暑いよ"
             end
-            push = "#{testmessage}\n#{date}\n#{test1}\n#{tempdifference}\n#{temptoday}\n#{tempyesterday}"
+            push = "#{test1}\n#{tempdifference}\n#{temptoday}\n#{tempyesterday}"
           # =======================
           else #何にも引っ掛からなかった場合、今日の天気
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
