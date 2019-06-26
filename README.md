@@ -20,5 +20,10 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  <!-- $ git add .
+  $ git commit -m "[コミットメッセージ]"
+  $ git push origin master -->
+  $ git push heroku master
+  $ heroku run rake db:migrate
 
 * ...
