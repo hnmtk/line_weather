@@ -20,9 +20,27 @@ task :update_feed => :environment do
   # 朝6時まで有効
   temptoday = doc.elements[xpath + 'info[2]/temperature/range'].text
   tempyesterday = doc.elements[xpath + 'info/temperature/range'].text
-  tempdifference = temptoday - tempyesterday
+  tempdifference = temptoday.to_i - tempyesterday.to_i
 
   min_per = 20
+  # =====test field=======
+  testmessage = "test中なの。騒しくてごめんね＞＜"
+  date = doc.elements['weatherforecast/pubDate'].text
+  test1 = "今日は昨日の気温と同じくらいだよ〜"
+  if tempdifference <= -3
+    test1 = "今日は昨日より少し寒いよ"
+  elsif tempdifference >= 3
+    test1 = "今日は昨日より少し暑いよ"
+  end
+  push = "#{testmessage}\n#{date}\n#{test1}"
+
+  user_ids = User.all.pluck(:line_id)
+  message = {
+    type: 'text',
+    text: push
+  }
+  response = client.multicast(user_ids, message)
+  # ======================
   if per6to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
     word1 = ["おはよう！","いい朝だね！","今日もよく眠れた？","早起きしてえらいね！"].sample
     word2 = ["気をつけて行ってきてね(^^)","良い一日を過ごしてね(^^)","雨に負けずに今日も頑張ってね(^^)","今日も一日楽しんでいこうね(^^)","楽しいことがありますように(^^)"].sample

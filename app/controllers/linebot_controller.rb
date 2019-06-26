@@ -51,9 +51,15 @@ class LinebotController < ApplicationController
             push = "こんにちは\n今日があなたにとっていい日になりますように(^^)"
           # ======test field======
           when /.*(test1).*/
-            test1 = doc.elements['weatherforecast/pubDate'].text
-            test2 = doc.elements[xpath + 'info']
-            push = "test\n#{test1}\n#{test2}"
+            testmessage = "test中なの。騒しくてごめんね＞＜"
+            date = doc.elements['weatherforecast/pubDate'].text
+            test1 = "今日は昨日の気温と同じくらいだよ〜"
+            if tempdifference <= -3
+              test1 = "今日は昨日より少し寒いよ"
+            elsif tempdifference >= 3
+              test1 = "今日は昨日より少し暑いよ"
+            end
+            push = "#{testmessage}\n#{date}\n#{test1}"
           # =======================
           else #何にも引っ掛からなかった場合、今日の天気
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
