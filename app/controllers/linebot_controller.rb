@@ -54,17 +54,17 @@ class LinebotController < ApplicationController
             test1 = doc.elements[xpath + 'info'].date
             push = "test\n#{test1}"
           when /.*(test2).*/
-            test1 = doc.elements[xpath + 'info/date']
+            test2 = doc.elements[xpath + 'info/date']
             push = "test\n#{test2}"
           when /.*(test3).*/
-            test1 = doc.elements[xpath + 'info/class']
+            test3 = doc.elements[xpath + 'info/class']
             push = "test\n#{test3}"
           when /.*(test4).*/
-            test1 = doc.elements[xpath + 'info'].class
+            test4 = doc.elements[xpath + 'info'].class
             push = "test\n#{test4}"
-          when /.*(test1).*/
-            test1 = doc.elements[xpath + 'info[date]']
-            push = "test\n#{test1}"
+          when /.*(test5).*/
+            test5 = doc.elements[xpath + 'info[date]']
+            push = "test\n#{test5}"
           # =======================
           else #何にも引っ掛からなかった場合、今日の天気
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
