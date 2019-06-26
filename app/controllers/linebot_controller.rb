@@ -63,7 +63,7 @@ class LinebotController < ApplicationController
             elsif tempdifference >= 3
               test1 = "今日は昨日より少し暑いよ"
             end
-            push = "#{testmessage}\n#{date}\n#{test1}\n#{tempdifference}"
+            push = "#{testmessage}\n#{date}\n#{test1}\n#{tempdifference}\n#{temptoday}\n#{tempyesterday}"
           # =======================
           else #何にも引っ掛からなかった場合、今日の天気
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
