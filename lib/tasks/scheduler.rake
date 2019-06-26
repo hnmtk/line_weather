@@ -24,15 +24,15 @@ task :update_feed => :environment do
 
   min_per = 20
   # =====test field=======
-  testmessage = "test中なの。騒しくてごめんね＞＜"
-  date = doc.elements['weatherforecast/pubDate'].text
-  test1 = "今日は昨日の気温と同じくらいだよ〜"
-  if tempdifference <= -3
-    test1 = "今日は昨日より少し寒いよ"
-  elsif tempdifference >= 3
-    test1 = "今日は昨日より少し暑いよ"
-  end
-  pushtest = "#{testmessage}\n#{date}\n#{test1}"
+  # testmessage = "test中なの。騒しくてごめんね＞＜"
+  # date = doc.elements['weatherforecast/pubDate'].text
+  # test1 = "今日は昨日の気温と同じくらいだよ〜"
+  # if tempdifference <= -3
+  #   test1 = "今日は昨日より少し寒いよ"
+  # elsif tempdifference >= 3
+  #   test1 = "今日は昨日より少し暑いよ"
+  # end
+  # pushtest = "#{testmessage}\n#{date}\n#{test1}"
 
 
   # ======================
@@ -45,8 +45,8 @@ task :update_feed => :environment do
     else
       word3 = "今日は雨が降るかもしれないから折りたたみ傘があると安心だよ！"
     end
-
-    push = "#{testmessage}\n#{date}\n#{test1}\n\n#{word1}\n#{word3}\n降水確率はこんな感じ〜\n　  6〜12時　#{per6to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word2}"
+#{testmessage}\n#{date}\n#{test1}\n\n
+    push = "#{word1}\n#{word3}\n降水確率はこんな感じ〜\n　  6〜12時　#{per6to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word2}"
 
     user_ids = User.all.pluck(:line_id)
     message = {
