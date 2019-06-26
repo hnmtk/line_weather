@@ -54,11 +54,11 @@ class LinebotController < ApplicationController
             testmessage = "test中なの。騒しくてごめんね＞＜"
             date = doc.elements['weatherforecast/pubDate'].text
             test1 = "今日は昨日の気温と同じくらいだよ〜"
-            if tempdifference <= -3
-              test1 = "今日は昨日より少し寒いよ"
-            elsif tempdifference >= 3
-              test1 = "今日は昨日より少し暑いよ"
-            end
+            # if tempdifference <= -3
+            #   test1 = "今日は昨日より少し寒いよ"
+            # elsif tempdifference >= 3
+            #   test1 = "今日は昨日より少し暑いよ"
+            # end
             push = "#{testmessage}\n#{date}\n#{test1}"
           # =======================
           else #何にも引っ掛からなかった場合、今日の天気
