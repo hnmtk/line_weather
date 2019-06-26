@@ -32,12 +32,12 @@ task :update_feed => :environment do
   elsif tempdifference >= 3
     test1 = "今日は昨日より少し暑いよ"
   end
-  push = "#{testmessage}\n#{date}\n#{test1}"
+  pushtest = "#{testmessage}\n#{date}\n#{test1}"
 
   user_ids = User.all.pluck(:line_id)
   message = {
     type: 'text',
-    text: push
+    text: pushtest
   }
   response = client.multicast(user_ids, message)
   # ======================
