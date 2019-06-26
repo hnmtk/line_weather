@@ -41,15 +41,6 @@ task :update_feed => :environment do
       text: push
     }
     response = client.multicast(user_ids, message)
-  else
-    push = "test #{tempdifference}"
-
-    user_ids = User.all.pluck(:line_id)
-    message = {
-      type: 'text',
-      text: push
-    }
-    response = client.multicast(user_ids, message)
   end
   "OK"
 end
