@@ -49,12 +49,23 @@ class LinebotController < ApplicationController
             push = "ありがとう！！！\n優しい言葉をかけてくれるあなたも素敵です(^^)"
           when /.*(こんにちは|こんばんは|初めまして|はじめまして|おはよう).*/
             push = "こんにちは\n今日があなたにとっていい日になりますように(^^)"
-          # test
-          when /.*(test).*/
-            temptoday = doc.elements[xpath + 'info[2]/temperature/range'].text
-            tempyesterday = doc.elements[xpath + 'info/temperature/range'].text
-            tempdifference = temptoday.to_i - tempyesterday.to_i
-            push = "test\n#{tempdifference}"
+          # ======test field======
+          when /.*(test1).*/
+            test1 = doc.elements[xpath + 'info'].date
+            push = "test\n#{test1}"
+          when /.*(test2).*/
+            test1 = doc.elements[xpath + 'info/date']
+            push = "test\n#{test2}"
+          when /.*(test3).*/
+            test1 = doc.elements[xpath + 'info/class']
+            push = "test\n#{test3}"
+          when /.*(test4).*/
+            test1 = doc.elements[xpath + 'info'].class
+            push = "test\n#{test4}"
+          when /.*(test1).*/
+            test1 = doc.elements[xpath + 'info[date]']
+            push = "test\n#{test1}"
+          # =======================
           else #何にも引っ掛からなかった場合、今日の天気
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
             mintemp = doc.elements[xpath + 'info/temperature/range[2]l'].text
