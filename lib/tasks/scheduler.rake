@@ -20,7 +20,7 @@ task :update_feed => :environment do
 
   testmessage = "test中なの。騒しくてごめんね＞＜"
   # date = doc.elements['weatherforecast/pubDate'].text
-  temptoday = doc.elements[xpath + 'info[2]/temperature/range'].text
+  temptoday = doc.elements[xpath + 'info[2]/temperature']
   # tempyesterday = doc.elements[xpath + 'info/temperature/range'].text
   # tempdifference = temptoday.to_i - tempyesterday.to_i
 
