@@ -25,6 +25,8 @@ class LinebotController < ApplicationController
           doc = REXML::Document.new(xml)
           xpath = 'weatherforecast/pref/area[4]/'
 
+          # prefecture = [{北海道: 01}]
+
           min_per = 30
           case input
           when /.*(今日|きょう).*/
@@ -61,7 +63,7 @@ class LinebotController < ApplicationController
 
           # 使い方
           when /.*(使い方|使いかた|つかい方|つかいかた).*/
-            push = "「(今日, 明日, 明後日)の天気」って聞いてくれたらその日の天気を教えるよ(^^)\n"
+            push = "「(今日, 明日, 明後日)の天気」って聞いてくれたらその日の天気を教えるよ(^^)"
 
 
           # おまけ
@@ -83,6 +85,9 @@ class LinebotController < ApplicationController
               test1 = "今日は昨日より少し暑いよ"
             end
             push = "#{test1}\n#{tempdifference}"
+
+          when /.*(test2).*/
+            push = Line::Bot::Event::MessageType::Text
           # =======================
           else #何にも引っ掛からなかった場合
             push = "使い方がわからないのかな？\n「使いかた」って聞いてみて(^^)"
