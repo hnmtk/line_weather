@@ -87,7 +87,7 @@ class LinebotController < ApplicationController
             push = "#{test1}\n#{tempdifference}"
 
           when /.*(test2).*/
-            push = Line::Bot::Event::MessageType::Text
+            push = event.message['text']
           # =======================
           else #何にも引っ掛からなかった場合
             push = "使い方がわからないのかな？\n「使いかた」って聞いてみて(^^)"
