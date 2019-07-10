@@ -93,7 +93,7 @@ class LinebotController < ApplicationController
                           {name:"徳島",num:36},{name:"香川",num:37},{name:"愛媛",num:38},{name:"高知",num:39},{name:"福岡",num:40},{name:"佐賀",num:41},{name:"長崎",num:42},
                           {name:"熊本",num:43},{name:"大分",num:44},{name:"宮崎",num:45},{name:"鹿児島",num:46},{name:"沖縄",num:47}]
             input_prefecture = event.message['text']
-            push = prefecture[name:input_prefecture][num:]
+            push = input_prefecture
           # =======================
           else #何にも引っ掛からなかった場合
             push = "使い方がわからないのかな？\n「使いかた」って聞いてみて(^^)"
