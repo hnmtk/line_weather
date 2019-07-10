@@ -18,12 +18,13 @@ task :update_feed => :environment do
   per12to18 = doc.elements[xpath + 'period[3]'].text
   per18to24 = doc.elements[xpath + 'period[4]'].text
 
+  # --------test field--------
   testmessage = "test中なの。騒しくてごめんね＞＜"
   date = doc.elements['weatherforecast/pubDate'].text
   # temptoday = doc.elements[xpath + 'info[2]/temperature']
   # tempyesterday = doc.elements[xpath + 'info/temperature/range'].text
   # tempdifference = temptoday.to_i - tempyesterday.to_i
-
+  # --------test field--------
 
   min_per = 20
   if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
@@ -36,7 +37,7 @@ task :update_feed => :environment do
       word3 = "今日は雨が降るかもしれないから折りたたみ傘があると安心だよ！"
     end
 
-    push = "#{testmessage}\n#{date}\n#{word3}\n降水確率はこんな感じ〜\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word2}"
+    push = "#{word3}\n降水確率はこんな感じ〜\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word2}"
 
     user_ids = User.all.pluck(:line_id)
     message = {
