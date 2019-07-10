@@ -94,7 +94,13 @@ class LinebotController < ApplicationController
                           {name:"宮崎", num:"45"}, {name:"鹿児島", num:"46"}, {name:"沖縄", num:"47"}]
                           # , {name:"茨城", num:08}, {name:"栃木", num:09}
             input_prefecture = event.message['text']
-            push = prefecture.find{|x| x[:name] == input_prefecture}[:num]
+            number = prefecture.find{|x| x[:name] == input_prefecture}[:num]
+            url  = "https://www.drk7.jp/weather/xml/"+number+".xml"
+            xml  = open( url ).read.toutf8
+            doc = REXML::Document.new(xml)
+            xpath = 'weatherforecast/pref/area/'
+            per6to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
+            push = per6to12
           when /.*(茨城|栃木).*/
             push = "バグ修正中(>_<)"
           # =======================
