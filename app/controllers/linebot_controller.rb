@@ -86,7 +86,7 @@ class LinebotController < ApplicationController
             end
             push = "#{test1}\n#{tempdifference}"
 
-          when /.*(北海道|青森|岩手|宮城|秋田|山形|福島|群馬|埼玉|千葉|東京|神奈川|新潟|富山|石川|福井|山梨|長野|岐阜|静岡|愛知|三重|滋賀|京都|大阪|兵庫|奈良|和歌山|鳥取|島根|岡山|広島|山口|徳島|香川|愛媛|高知|福岡|佐賀|長崎|熊本|大分|宮崎|鹿児島|沖縄).*/
+          when /.*(北海道|青森|岩手|宮城|秋田|山形|福島|茨城|栃木|群馬|埼玉|千葉|東京|神奈川|新潟|富山|石川|福井|山梨|長野|岐阜|静岡|愛知|三重|滋賀|京都|大阪|兵庫|奈良|和歌山|鳥取|島根|岡山|広島|山口|徳島|香川|愛媛|高知|福岡|佐賀|長崎|熊本|大分|宮崎|鹿児島|沖縄).*/
             prefecture = [{name:"北海道", num:"01"}, {name:"青森", num:"02"}, {name:"岩手", num:"03"}, {name:"宮城", num:"04"}, {name:"秋田", num:"05"}, {name:"山形", num:"06"},
                           {name:"福島", num:"07"}, {name:"茨城", num:"08"}, {name:"栃木", num:"09"}, {name:"群馬", num:"10"}, {name:"埼玉", num:"11"}, {name:"千葉", num:"12"},
                           {name:"東京", num:"13"}, {name:"神奈川", num:"14"}, {name:"新潟", num:"15"}, {name:"富山", num:"16"}, {name:"石川", num:"17"}, {name:"福井", num:"18"},
@@ -97,14 +97,16 @@ class LinebotController < ApplicationController
                            {name:"熊本", num:"43"}, {name:"大分", num:"44"}, {name:"宮崎", num:"45"}, {name:"鹿児島", num:"46"}, {name:"沖縄", num:"47"}]
             input_prefecture = event.message['text']
             number = prefecture.find{|x| x[:name] == input_prefecture}[:num]
+
             url  = "https://www.drk7.jp/weather/xml/"+number+".xml"
             xml  = open( url ).read.toutf8
             doc = REXML::Document.new(xml)
             xpath = 'weatherforecast/pref/area/'
+
             per6to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
-            push = "修正中\n#{per6to12}"
-          when /.*(茨城|栃木).*/
-            push = "バグ修正中(>_<)"
+            per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]l'].text
+            per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]l'].text
+            push = "修正中\n　  6〜12時　#{per6to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％"
           # =======================
           else #何にも引っ掛からなかった場合
             push = "使い方がわからないのかな？\n「使いかた」って聞いてみて(^^)"
