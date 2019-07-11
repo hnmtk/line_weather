@@ -61,7 +61,9 @@ class LinebotController < ApplicationController
 
           # 使い方
           when /.*(使い方|使いかた|つかい方|つかいかた).*/
-            push = "「(今日, 明日, 明後日)の天気」って聞いてくれたらその日の天気を教えるよ(^^)"
+            push = "「今日の天気」って聞いてくれたら降水確率と気温を教えられるよ(^^)\n
+                    明日と明後日もだいたいだったらわかるよ。\nでも変わっちゃうからその日になったらまた聞いてほしいな。
+                    「（都道府県名）の天気」も教えられるよ"
 
 
           # おまけ
@@ -85,14 +87,14 @@ class LinebotController < ApplicationController
             push = "#{test1}\n#{tempdifference}"
 
           when /.*(北海道|青森|岩手|宮城|秋田|山形|福島|群馬|埼玉|千葉|東京|神奈川|新潟|富山|石川|福井|山梨|長野|岐阜|静岡|愛知|三重|滋賀|京都|大阪|兵庫|奈良|和歌山|鳥取|島根|岡山|広島|山口|徳島|香川|愛媛|高知|福岡|佐賀|長崎|熊本|大分|宮崎|鹿児島|沖縄).*/
-            prefecture = [{name:"北海道", num:"01"}, {name:"青森", num:"02"}, {name:"岩手", num:"03"}, {name:"宮城", num:"04"}, {name:"秋田", num:"05"}, {name:"山形", num:"06"}, {name:"福島", num:"07"},
-                          {name:"群馬", num:"10"}, {name:"埼玉", num:"11"}, {name:"千葉", num:"12"}, {name:"東京", num:"13"}, {name:"神奈川", num:"14"}, {name:"新潟", num:"15"}, {name:"富山", num:"16"},
-                          {name:"石川", num:"17"}, {name:"福井", num:"18"}, {name:"山梨", num:"19"}, {name:"長野", num:"20"}, {name:"岐阜", num:"21"}, {name:"静岡", num:"22"}, {name:"愛知", num:"23"},
-                          {name:"三重", num:"24"}, {name:"滋賀", num:"25"}, {name:"京都", num:"26"}, {name:"大阪", num:"27"}, {name:"兵庫", num:"28"}, {name:"奈良", num:"29"}, {name:"和歌山", num:"30"},
-                          {name:"鳥取", num:"31"}, {name:"島根", num:"32"}, {name:"岡山", num:"33"}, {name:"広島", num:"34"}, {name:"山口", num:"35"}, {name:"徳島", num:"36"}, {name:"香川", num:"37"},
-                          {name:"愛媛", num:"38"}, {name:"高知", num:"39"}, {name:"福岡", num:"40"}, {name:"佐賀", num:"41"}, {name:"長崎", num:"42"}, {name:"熊本", num:"43"}, {name:"大分", num:"44"},
-                          {name:"宮崎", num:"45"}, {name:"鹿児島", num:"46"}, {name:"沖縄", num:"47"}]
-                          # , {name:"茨城", num:08}, {name:"栃木", num:09}
+            prefecture = [{name:"北海道", num:"01"}, {name:"青森", num:"02"}, {name:"岩手", num:"03"}, {name:"宮城", num:"04"}, {name:"秋田", num:"05"}, {name:"山形", num:"06"},
+                          {name:"福島", num:"07"}, {name:"茨城", num:"08"}, {name:"栃木", num:"09"}, {name:"群馬", num:"10"}, {name:"埼玉", num:"11"}, {name:"千葉", num:"12"},
+                          {name:"東京", num:"13"}, {name:"神奈川", num:"14"}, {name:"新潟", num:"15"}, {name:"富山", num:"16"}, {name:"石川", num:"17"}, {name:"福井", num:"18"},
+                          {name:"山梨", num:"19"}, {name:"長野", num:"20"}, {name:"岐阜", num:"21"}, {name:"静岡", num:"22"}, {name:"愛知", num:"23"}, {name:"三重", num:"24"},
+                          {name:"滋賀", num:"25"}, {name:"京都", num:"26"}, {name:"大阪", num:"27"}, {name:"兵庫", num:"28"}, {name:"奈良", num:"29"}, {name:"和歌山", num:"30"},
+                          {name:"鳥取", num:"31"}, {name:"島根", num:"32"}, {name:"岡山", num:"33"}, {name:"広島", num:"34"}, {name:"山口", num:"35"}, {name:"徳島", num:"36"},
+                           {name:"香川", num:"37"}, {name:"愛媛", num:"38"}, {name:"高知", num:"39"}, {name:"福岡", num:"40"}, {name:"佐賀", num:"41"}, {name:"長崎", num:"42"},
+                           {name:"熊本", num:"43"}, {name:"大分", num:"44"}, {name:"宮崎", num:"45"}, {name:"鹿児島", num:"46"}, {name:"沖縄", num:"47"}]
             input_prefecture = event.message['text']
             number = prefecture.find{|x| x[:name] == input_prefecture}[:num]
             url  = "https://www.drk7.jp/weather/xml/"+number+".xml"
@@ -100,7 +102,7 @@ class LinebotController < ApplicationController
             doc = REXML::Document.new(xml)
             xpath = 'weatherforecast/pref/area/'
             per6to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
-            push = per6to12
+            push = "修正中\n#{per6to12}"
           when /.*(茨城|栃木).*/
             push = "バグ修正中(>_<)"
           # =======================
