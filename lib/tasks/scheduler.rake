@@ -14,14 +14,14 @@ task :update_feed => :environment do
   xml  = open( url ).read.toutf8
   doc = REXML::Document.new(xml)
   xpath = 'weatherforecast/pref/area[4]/info/rainfallchance/'
-  per06to12 = doc.elements[xpath + 'period[2]'].text
-  per12to18 = doc.elements[xpath + 'period[3]'].text
-  per18to24 = doc.elements[xpath + 'period[4]'].text
+  per06to12 = doc.elements[xpath + 'period[2]l'].text
+  per12to18 = doc.elements[xpath + 'period[3]l'].text
+  per18to24 = doc.elements[xpath + 'period[4]l'].text
 
   testmessage = "test中なの。騒しくてごめんね＞＜"
   # date = doc.elements['weatherforecast/pref/area/info'].attributes['date']
-  # temptoday = doc.elements[xpath + 'info[2]/temperature']
-  # tempyesterday = doc.elements[xpath + 'info/temperature/range'].text
+  # temptoday = doc.elements['weatherforecast/pref/area[4]/info[2]/temperature']
+  # tempyesterday = doc.elements['weatherforecast/pref/area[4]/info/temperature/range'].text
   # tempdifference = temptoday.to_i - tempyesterday.to_i
 
   min_per = 20
