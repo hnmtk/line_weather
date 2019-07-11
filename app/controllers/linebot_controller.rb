@@ -85,7 +85,7 @@ class LinebotController < ApplicationController
             push = "#{test1}\n#{tempdifference}"
 
           when /.*(北海道|青森|岩手|宮城|秋田|山形|福島|茨城|栃木|群馬|埼玉|千葉|東京|神奈川|新潟|富山|石川|福井|山梨|長野|岐阜|静岡|愛知|三重|滋賀|京都|大阪|兵庫|奈良|和歌山|鳥取|島根|岡山|広島|山口|徳島|香川|愛媛|高知|福岡|佐賀|長崎|熊本|大分|宮崎|鹿児島|沖縄).*/
-            prefecture = [{name:"北海道", num:"01"}, {name:"青森", num:"02"}, {name:"岩手", num:"03"}, {name:"宮城", num:"04"}, {name:"秋田", num:"05"}, {name:"山形", num:"06"},
+            prefecture = [{name:"北海道の天気", num:"01"}, {name:"青森", num:"02"}, {name:"岩手", num:"03"}, {name:"宮城", num:"04"}, {name:"秋田", num:"05"}, {name:"山形", num:"06"},
                           {name:"福島", num:"07"}, {name:"茨城", num:"08"}, {name:"栃木", num:"09"}, {name:"群馬", num:"10"}, {name:"埼玉", num:"11"}, {name:"千葉", num:"12"},
                           {name:"東京", num:"13"}, {name:"神奈川", num:"14"}, {name:"新潟", num:"15"}, {name:"富山", num:"16"}, {name:"石川", num:"17"}, {name:"福井", num:"18"},
                           {name:"山梨", num:"19"}, {name:"長野", num:"20"}, {name:"岐阜", num:"21"}, {name:"静岡", num:"22"}, {name:"愛知", num:"23"}, {name:"三重", num:"24"},
