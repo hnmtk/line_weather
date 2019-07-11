@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
             per6to12 = doc.elements[xpath + '/info/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + '/info/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + '/info/rainfallchance/period[4]l'].text
-            push = "#{name}はね〜\n#{area}の降水確率はこんな感じ！\n　  6〜12時　#{per6to12}％\n　12〜18時　#{per12to18}％\n　18〜24時　#{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °Cくらいだよ"
+            push = "#{name}はね〜\n#{area}の降水確率はこんな感じ！\n　  6〜12時　#{per6to12}％\n　12〜18時　#{per12to18}％\n　18〜24時　#{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °C くらいだよ"
 
           when /.*(今日|きょう).*/
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
