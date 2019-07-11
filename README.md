@@ -34,6 +34,8 @@ The method only blocks you.
 Depending on the situation, please be aware that you may unsubscribe from me.  
 
 ---
+***
+___
 
 LINEアカウントをお持ちであることが前提となります。  
 登録する方は、こちらを参照ください。
