@@ -32,6 +32,7 @@ https://appllio.com/line-account-registration
 There are conditions for the number of people that can be registered, so once specification confirmation etc. have been completed, please cooperate in the registration cancellation.  
 The method only blocks you.  
 Depending on the situation, please be aware that you may unsubscribe from me.  
+
   
 
 LINEアカウントをお持ちであることが前提となります。  
@@ -59,7 +60,7 @@ LINEアカウントをお持ちであることが前提となります。
 - LINEはスマートフォンを通して常に隣にあるものなので、実用的だと考えた。  
 - 傘を忘れることがしばしばあり、受動的に知らせてもらえば解決すると考えた。  
 #### さらにやりたいこと
-- リッチメニューの導入
+- リッチメニューの導入  
 ![リッチメニュー](https://user-images.githubusercontent.com/50007961/61012702-8741ed00-a3ba-11e9-83be-3550ca2531cf.png)  
 有料プランに加入する必要があったので断念しました。
 #### 工夫点
