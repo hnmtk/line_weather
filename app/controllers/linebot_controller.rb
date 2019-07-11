@@ -95,16 +95,18 @@ class LinebotController < ApplicationController
                            {name:"熊本", num:"43"}, {name:"大分", num:"44"}, {name:"宮崎", num:"45"}, {name:"鹿児島", num:"46"}, {name:"沖縄", num:"47"}]
             input_prefecture = event.message['text']
             number = prefecture.find{|x| x[:name] == input_prefecture}[:num]
-
+            name = prefecture.find{|x| x[:name] == input_prefecture}[:name]
             url  = "https://www.drk7.jp/weather/xml/"+number+".xml"
             xml  = open( url ).read.toutf8
             doc = REXML::Document.new(xml)
             xpath = 'weatherforecast/pref/area/'
 
+            maxtemp = doc.elements[xpath + 'info/temperature/range'].text
+            mintemp = doc.elements[xpath + 'info/temperature/range[2]l'].text
             per6to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]l'].text
-            push = "修正中\n　  6〜12時　#{per6to12}％\n　12〜18時　#{per12to18}％\n　18〜24時　#{per18to24}％"
+            push = "#{name}の今日の天気はね〜\n　  6〜12時　#{per6to12}％\n　12〜18時　#{per12to18}％\n　18〜24時　#{per18to24}％\n気温は #{maxtemp}~#{mintemp} °Cだよ"
           # =======================
           else #何にも引っ掛からなかった場合
             push = "使い方がわからないのかな？\n「使いかた」って聞いてみて(^^)"
