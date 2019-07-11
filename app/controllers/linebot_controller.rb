@@ -42,14 +42,15 @@ class LinebotController < ApplicationController
             url  = "https://www.drk7.jp/weather/xml/"+number+".xml"
             xml  = open( url ).read.toutf8
             doc = REXML::Document.new(xml)
-            xpath = 'weatherforecast/pref/area/'
-
-            maxtemp = doc.elements[xpath + 'info/temperature/range'].text
-            mintemp = doc.elements[xpath + 'info/temperature/range[2]l'].text
-            per6to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
-            per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]l'].text
-            per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]l'].text
-            push = "#{name}はね〜\n　  6〜12時　#{per6to12}％\n　12〜18時　#{per12to18}％\n　18〜24時　#{per18to24}％\n気温は #{maxtemp}~#{mintemp} °Cだよ"
+            xpath = 'weatherforecast/pref/area'
+            
+            area = doc.elements[xpath].text
+            maxtemp = doc.elements[xpath + '/info/temperature/range'].text
+            mintemp = doc.elements[xpath + '/info/temperature/range[2]l'].text
+            per6to12 = doc.elements[xpath + '/info/rainfallchance/period[2]l'].text
+            per12to18 = doc.elements[xpath + '/info/rainfallchance/period[3]l'].text
+            per18to24 = doc.elements[xpath + '/info/rainfallchance/period[4]l'].text
+            push = "#{name}はね〜\n#{area}の降水確率はこんな感じ！\n　  6〜12時　#{per6to12}％\n　12〜18時　#{per12to18}％\n　18〜24時　#{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °Cくらいだよ"
 
           when /.*(今日|きょう).*/
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
