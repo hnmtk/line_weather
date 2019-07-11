@@ -18,26 +18,59 @@ LINEのMessaging APIを利用したアプリです。
 - rails 5.2.0
 
 ## Usege
+It is assumed that you have a LINE account.  
+Please see here for registration.
+https://appllio.com/line-account-registration
+- Push message　function
+  - Search for `@ 618ypybr` from LINE friend search.
+  - If the probability of precipitation exceeds 20%, we will notify you by push message.
+- Reply message　function
+  - After registration, you can send `今日の天気` on the chat screen and the Tokyo weather will be replied that day.
+  - If you send `明日の天気`,`明後日の天気`, it will return Tokyo's rainfall probability for that day.
+  - In the same way, you can see `使い方を教えて` Teach me how to use.
+- Uninstallation request
+There are conditions for the number of people that can be registered, so once specification confirmation etc. have been completed, please cooperate in the registration cancellation.  
+The method only blocks you.  
+Depending on the situation, please be aware that you may unsubscribe from me.  
+
+
 LINEアカウントをお持ちであることが前提となります。  
 登録する方は、こちらを参照ください。
 [LINEの登録方法と注意点まとめ](https://appllio.com/line-account-registration)
 
 - 自動送信メッセージ
-  - LINEの友だち追加の検索より`@618ypybr`を検索し登録。以上です。
+  - LINEの友だち追加の検索より`@618ypybr`を検索し登録。
+  - 降水確率が20%以上の日は、自動送信でおしらせします。
 
 - 返信メッセージ
   - 登録後、チャット画面で`今日の天気`と送信いただくとその日の東京の天気を返信します。
   - `明日の天気`,`明後日の天気`と送信いただくと、その日の東京の降水確率を返信します。
   - 同様に`使い方を教えて`と送信いただくと、その他の使用方法を見ることが出来ます。
 
+- アンインストールのお願い
+登録できる人数に条件があるため、仕様確認等が済みましたら登録解除のご協力をお願いします。
+方法はブロックしていただくだけです。
+状況によってはこちらから解除する場合もございますのでご了承ください。
+
+## Anythink Else
+#### 作った理由
+理由はこの３点です。
+- なんでもいいのでAPIに触れてみたかった。
+- LINEはスマートフォンを通して常に隣にあるものなので、実用的だと考えた。
+- 傘を忘れることがしばしばあり、受動的に知らせてもらえば解決すると考えた。
+#### さらにやりたいこと
+- リッチメニューの導入
+![リッチメニュー](https://user-images.githubusercontent.com/50007961/61012702-8741ed00-a3ba-11e9-83be-3550ca2531cf.png)  
+有料プランに加入する必要があったので断念しました。
+#### 工夫点
+
+#### 苦労した点
 
 
 
 
 
-
-
-* Deployment instructions
+###### Deployment instructions memo
 
   $ git push heroku master  
   $ heroku run rake db:migrate
