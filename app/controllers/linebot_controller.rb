@@ -61,7 +61,7 @@ class LinebotController < ApplicationController
 
           # 使い方
           when /.*(使い方|使いかた|つかい方|つかいかた).*/
-            push = "「今日の天気」って聞いてくれたら降水確率と気温を教えられるよ(^^)\n明日と明後日もだいたいだったらわかるよ。\nでも変わっちゃうからその日になったらまた聞いてほしいな。\n「（都道府県名）の天気」も教えられるよ"
+            push = "「今日の天気」って聞いてくれたら降水確率と気温を教えられるよ(^^)\n明日と明後日もだいたいだったらわかるよ。でも変わっちゃうからその日になったらまた聞いてほしいな。\n「（都道府県名）の天気」も教えられるよ"
 
 
           # おまけ
@@ -94,8 +94,8 @@ class LinebotController < ApplicationController
                            {name:"香川", num:"37"}, {name:"愛媛", num:"38"}, {name:"高知", num:"39"}, {name:"福岡", num:"40"}, {name:"佐賀", num:"41"}, {name:"長崎", num:"42"},
                            {name:"熊本", num:"43"}, {name:"大分", num:"44"}, {name:"宮崎", num:"45"}, {name:"鹿児島", num:"46"}, {name:"沖縄", num:"47"}]
             input_prefecture = event.message['text']
-            number = prefecture.find{|x| x[:name] == input_prefecture}[:num]
-            name = prefecture.find{|x| x[:name] == input_prefecture}[:name]
+            number = prefecture.find{|x| x[:name].include?(input_prefecture)}[:num]
+            name = prefecture.find{|x| x[:name].include?(input_prefecture)}[:name]
             url  = "https://www.drk7.jp/weather/xml/"+number+".xml"
             xml  = open( url ).read.toutf8
             doc = REXML::Document.new(xml)
