@@ -44,7 +44,7 @@ class LinebotController < ApplicationController
             doc = REXML::Document.new(xml)
             xpath = 'weatherforecast/pref/area'
             
-            area = doc.elements[xpath].id
+            area = doc.elements[xpath].attributes['id']
             maxtemp = doc.elements[xpath + '/info/temperature/range'].text
             mintemp = doc.elements[xpath + '/info/temperature/range[2]l'].text
             per6to12 = doc.elements[xpath + '/info/rainfallchance/period[2]l'].text
