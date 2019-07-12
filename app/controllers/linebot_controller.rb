@@ -45,6 +45,7 @@ class LinebotController < ApplicationController
             doc = REXML::Document.new(xml)
             i = 1
             locals = []
+            local_weather = ""
             while i <= point do
               xpath = "weatherforecast/pref/area[#{i}]"
               area = doc.elements[xpath].attributes['id']
@@ -58,7 +59,7 @@ class LinebotController < ApplicationController
             end
             locals.each do |local|
               local[0]local[1]local[2]local[3]local[4]local[5]
-              local_weather = "#{name}はね〜\n#{local[0]}の降水確率はこんな感じ！\n    6〜12時  #{local[1]}％\n  12〜18時  #{local[2]}％\n  18〜24時  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらいだよ"
+              local_weather += "#{name}はね〜\n#{local[0]}の降水確率はこんな感じ！\n    6〜12時  #{local[1]}％\n  12〜18時  #{local[2]}％\n  18〜24時  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらいだよ"
             end
             push = "#{name}はね〜\n#{local_weather}"
           when /.*(今日|きょう).*/
