@@ -44,7 +44,7 @@ class LinebotController < ApplicationController
             xml  = open( url ).read.toutf8
             doc = REXML::Document.new(xml)
             i = 1
-            array = []
+            locals = []
             while i <= point do
               xpath = "weatherforecast/pref/area[#{i}]"
               area = doc.elements[xpath].attributes['id']
@@ -53,10 +53,10 @@ class LinebotController < ApplicationController
               per6to12 = doc.elements[xpath + '/info/rainfallchance/period[2]l'].text
               per12to18 = doc.elements[xpath + '/info/rainfallchance/period[3]l'].text
               per18to24 = doc.elements[xpath + '/info/rainfallchance/period[4]l'].text
-              array << "#{area}の降水確率はこんな感じ！\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °C くらいだよ\n"
+              locals << [area,per6to12,per12to18,per18to24,maxtemp,mintemp]
               i += 1
             end
-            push = "#{array}"
+            push = "#{locals}"
             # "#{name}はね〜\n#{area}の降水確率はこんな感じ！\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °C くらいだよ"
 
           when /.*(今日|きょう).*/
