@@ -56,7 +56,7 @@ class LinebotController < ApplicationController
             #   array << "#{area}の降水確率はこんな感じ！\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °C くらいだよ\n"
             #   i += 1
             # end
-            push = array + i
+            push = "#{array},#{i}"
             # "#{name}はね〜\n#{area}の降水確率はこんな感じ！\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °C くらいだよ"
 
           when /.*(今日|きょう).*/
