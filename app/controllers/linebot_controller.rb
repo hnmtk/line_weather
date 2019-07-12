@@ -46,7 +46,7 @@ class LinebotController < ApplicationController
             i = 1
             array = []
             while i <= point do
-              xpath = 'weatherforecast/pref/area['+i+']'
+              xpath = "weatherforecast/pref/area[#{i}]"
               area = doc.elements[xpath].attributes['id']
               maxtemp = doc.elements[xpath + '/info/temperature/range'].text
               mintemp = doc.elements[xpath + '/info/temperature/range[2]l'].text
