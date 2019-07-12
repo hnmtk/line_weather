@@ -28,14 +28,14 @@ class LinebotController < ApplicationController
           min_per = 30
           case input
           when /.*(北海道|青森|岩手|宮城|秋田|山形|福島|茨城|栃木|群馬|埼玉|千葉|東京|神奈川|新潟|富山|石川|福井|山梨|長野|岐阜|静岡|愛知|三重|滋賀|京都|大阪|兵庫|奈良|和歌山|鳥取|島根|岡山|広島|山口|徳島|香川|愛媛|高知|福岡|佐賀|長崎|熊本|大分|宮崎|鹿児島|沖縄).*/
-            prefecture = [{name:"今日の北海道の天気", num:"01"}, {name:"今日の青森の天気", num:"02"}, {name:"今日の岩手の天気", num:"03"}, {name:"今日の宮城の天気", num:"04"}, {name:"今日の秋田の天気", num:"05"}, {name:"今日の山形の天気", num:"06"},
-                          {name:"今日の福島の天気", num:"07"}, {name:"今日の茨城の天気", num:"08"}, {name:"今日の栃木の天気", num:"09"}, {name:"今日の群馬の天気", num:"10"}, {name:"今日の埼玉の天気", num:"11"}, {name:"今日の千葉の天気", num:"12"},
-                          {name:"今日の東京の天気", num:"13"}, {name:"今日の神奈川の天気", num:"14"}, {name:"今日の新潟の天気", num:"15"}, {name:"今日の富山の天気", num:"16"}, {name:"今日の石川の天気", num:"17"}, {name:"今日の福井の天気", num:"18"},
-                          {name:"今日の山梨の天気", num:"19"}, {name:"今日の長野の天気", num:"20"}, {name:"今日の岐阜の天気", num:"21"}, {name:"今日の静岡の天気", num:"22"}, {name:"今日の愛知の天気", num:"23"}, {name:"今日の三重の天気", num:"24"},
-                          {name:"今日の滋賀の天気", num:"25"}, {name:"今日の京都の天気", num:"26"}, {name:"今日の大阪の天気", num:"27"}, {name:"今日の兵庫の天気", num:"28"}, {name:"今日の奈良の天気", num:"29"}, {name:"今日の和歌山の天気", num:"30"},
-                          {name:"今日の鳥取の天気", num:"31"}, {name:"今日の島根の天気", num:"32"}, {name:"今日の岡山の天気", num:"33"}, {name:"今日の広島の天気", num:"34"}, {name:"今日の山口の天気", num:"35"}, {name:"今日の徳島の天気", num:"36"},
-                          {name:"今日の香川の天気", num:"37"}, {name:"今日の愛媛の天気", num:"38"}, {name:"今日の高知の天気", num:"39"}, {name:"今日の福岡の天気", num:"40"}, {name:"今日の佐賀の天気", num:"41"}, {name:"今日の長崎の天気", num:"42"},
-                          {name:"今日の熊本の天気", num:"43"}, {name:"今日の大分の天気", num:"44"}, {name:"今日の宮崎の天気", num:"45"}, {name:"今日の鹿児島の天気", num:"46"}, {name:"今日の沖縄の天気", num:"47"}]
+            prefecture = [{name:"今日の北海道の天気", num:"01",point:16}, {name:"今日の青森の天気", num:"02",point:3}, {name:"今日の岩手の天気", num:"03",point:3}, {name:"今日の宮城の天気", num:"04",point:2}, {name:"今日の秋田の天気", num:"05",point:2}, {name:"今日の山形の天気", num:"06",point:4},
+                          {name:"今日の福島の天気", num:"07",point:3}, {name:"今日の茨城の天気", num:"08",point:2}, {name:"今日の栃木の天気", num:"09",point:2}, {name:"今日の群馬の天気", num:"10",point:2}, {name:"今日の埼玉の天気", num:"11",point:3}, {name:"今日の千葉の天気", num:"12",point:3},
+                          {name:"今日の東京の天気", num:"13",point:3}, {name:"今日の神奈川の天気", num:"14",point:2}, {name:"今日の新潟の天気", num:"15",point:4}, {name:"今日の富山の天気", num:"16",point:2}, {name:"今日の石川の天気", num:"17",point:2}, {name:"今日の福井の天気", num:"18",point:2},
+                          {name:"今日の山梨の天気", num:"19",point:2}, {name:"今日の長野の天気", num:"20",point:3}, {name:"今日の岐阜の天気", num:"21",point:2}, {name:"今日の静岡の天気", num:"22",point:4}, {name:"今日の愛知の天気", num:"23",point:2}, {name:"今日の三重の天気", num:"24",point:2},
+                          {name:"今日の滋賀の天気", num:"25",point:2}, {name:"今日の京都の天気", num:"26",point:2}, {name:"今日の大阪の天気", num:"27",point:1}, {name:"今日の兵庫の天気", num:"28",point:2}, {name:"今日の奈良の天気", num:"29",point:2}, {name:"今日の和歌山の天気", num:"30",point:2},
+                          {name:"今日の鳥取の天気", num:"31",point:2}, {name:"今日の島根の天気", num:"32",point:3}, {name:"今日の岡山の天気", num:"33",point:2}, {name:"今日の広島の天気", num:"34",point:2}, {name:"今日の山口の天気", num:"35",point:4}, {name:"今日の徳島の天気", num:"36",point:2},
+                          {name:"今日の香川の天気", num:"37",point:1}, {name:"今日の愛媛の天気", num:"38",point:3}, {name:"今日の高知の天気", num:"39",point:3}, {name:"今日の福岡の天気", num:"40",point:4}, {name:"今日の佐賀の天気", num:"41",point:2}, {name:"今日の長崎の天気", num:"42",point:4},
+                          {name:"今日の熊本の天気", num:"43",point:4}, {name:"今日の大分の天気", num:"44",point:4}, {name:"今日の宮崎の天気", num:"45",point:4}, {name:"今日の鹿児島の天気", num:"46",point:4}, {name:"今日の沖縄の天気", num:"47",point:7}]
             input_prefecture = event.message['text']
             number = prefecture.find{|x| x[:name].include?(input_prefecture)}[:num]
             name = prefecture.find{|x| x[:name].include?(input_prefecture)}[:name]
