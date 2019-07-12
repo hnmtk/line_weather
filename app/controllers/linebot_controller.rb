@@ -54,14 +54,14 @@ class LinebotController < ApplicationController
               per6to12 = doc.elements[xpath + '/info/rainfallchance/period[2]l'].text
               per12to18 = doc.elements[xpath + '/info/rainfallchance/period[3]l'].text
               per18to24 = doc.elements[xpath + '/info/rainfallchance/period[4]l'].text
-              locals << [area,per6to12,per12to18,per18to24,maxtemp,mintemp]
+              locals << "#{area}の降水確率はこんな感じ！\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nそれから気温は #{maxtemp}~#{mintemp} °C くらいだよ
               i += 1
             end
-            locals.each do |local|
-              local[0]local[1]local[2]local[3]local[4]local[5]
-              local_weather += "#{name}はね〜\n#{local[0]}の降水確率はこんな感じ！\n    6〜12時  #{local[1]}％\n  12〜18時  #{local[2]}％\n  18〜24時  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらいだよ"
-            end
-            push = "#{name}はね〜\n#{local_weather}"
+            # locals.each do |local|
+            #   local[0]local[1]local[2]local[3]local[4]local[5]
+            #   local_weather += "#{name}はね〜\n#{local[0]}の降水確率はこんな感じ！\n    6〜12時  #{local[1]}％\n  12〜18時  #{local[2]}％\n  18〜24時  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらいだよ"
+            # end
+            push = "#{name}はね〜\n#{locals}"
           when /.*(今日|きょう).*/
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
             mintemp = doc.elements[xpath + 'info/temperature/range[2]l'].text
