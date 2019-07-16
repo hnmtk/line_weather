@@ -53,7 +53,7 @@ class LinebotController < ApplicationController
               per6to12 = doc.elements[xpath + '/info/rainfallchance/period[2]l'].text
               per12to18 = doc.elements[xpath + '/info/rainfallchance/period[3]l'].text
               per18to24 = doc.elements[xpath + '/info/rainfallchance/period[4]l'].text
-              locals << [area,per6to12,{per12to18,per18to24,maxtemp,mintemp]
+              locals << [area,per6to12,per12to18,per18to24,maxtemp,mintemp]
               i += 1
             end
             # locals.each do |local|
