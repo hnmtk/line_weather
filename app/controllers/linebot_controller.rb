@@ -58,7 +58,7 @@ class LinebotController < ApplicationController
               i += 1
             end
             locals.each do |local|
-              local_weather << "#{local[0]}の降水確率はこんな感じ！\n  6時  12時  18時\n #{local[1]}％  #{local[2]}％  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらい\n\n"
+              local_weather << "\n#{local[0]}の降水確率はこんな感じ！\n  6時  12時  18時\n #{local[1]}％  #{local[2]}％  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらい\n"
             end
             push = "#{name}はね〜\n#{local_weather}だよ"
           when /.*(今日|きょう).*/
