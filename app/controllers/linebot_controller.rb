@@ -58,9 +58,10 @@ class LinebotController < ApplicationController
               i += 1
             end
             locals.each do |local|
-              local_weather << "\n#{local[0]}の降水確率はこんな感じ！\n  6時  12時  18時\n #{local[1]}％  #{local[2]}％  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらい\n"
+              local_weather << "\n#{local[0]}の降水確率はこんな感じ！\n  6時 〜 12時 〜 18時\n #{local[1]}％ 〜 #{local[2]}％ 〜 #{local[3]}％\n気温は #{local[4]}~#{local[5]} °C くらい\n"
             end
-            push = "#{name}はね〜\n#{local_weather}だよ"
+            push = "#{name}はね〜\n#{local_weather}だよ(^^)"
+
           when /.*(今日|きょう).*/
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
             mintemp = doc.elements[xpath + 'info/temperature/range[2]l'].text
@@ -72,30 +73,30 @@ class LinebotController < ApplicationController
               push = "今日の天気？\n今日は雨が降りそうだから傘があった方が安心だよ\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\n気温は #{maxtemp}~#{mintemp} °Cだよ\n#{word}"
             else
               word = ["天気もいいから一駅歩いてみるのはどう？(^^)","今日会う人のいいところを見つけて是非その人に教えてあげて(^^)","素晴らしい一日になりますように(^^)","雨が降っちゃったらごめんね(><)"].sample
-              push = "今日の天気？\n今日は雨は降らなさそうだよ\n気温は #{maxtemp}~#{mintemp} °Cだよ\n#{word}"
+              push = "東京の今日の天気？\n今日は雨は降らなさそうだよ\n気温は #{maxtemp}~#{mintemp} °Cだよ\n#{word}"
             end
           when /.*(明日|あした).*/
             per6to12 = doc.elements[xpath + 'info[2]/rainfallchance/period[2]'].text
             per12to18 = doc.elements[xpath + 'info[2]/rainfallchance/period[3]'].text
             per18to24 = doc.elements[xpath + 'info[2]/rainfallchance/period[4]'].text
             if per6to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
-              push = "明日の天気？\n明日は雨が降りそうだよ(>_<)\n今のところ降水確率はこんな感じだよ\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
+              push = "東京の明日の天気？\n明日は雨が降りそうだよ(>_<)\n今のところ降水確率はこんな感じだよ\n    6〜12時  #{per6to12}％\n  12〜18時  #{per12to18}％\n  18〜24時  #{per18to24}％\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
             else
-              push = "明日の天気？\n明日は雨が降らない予定だよ(^^)\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
+              push = "東京の明日の天気？\n明日は雨が降らない予定だよ(^^)\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
             end
           when /.*(明後日|あさって).*/
             per6to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info[3]/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + 'info[3]/rainfallchance/period[4]l'].text
             if per6to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
-              push = "明後日の天気？\n明後日は雨が降りそう…\n当日の朝に雨が降りそうだったら教えるね！"
+              push = "東京の明後日の天気？\n明後日は雨が降りそう…\n当日の朝に雨が降りそうだったら教えるね！"
             else
-              push = "明後日の天気？\n明後日は雨は降らない予定だよ(^^)\nまた当日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
+              push = "東京の明後日の天気？\n明後日は雨は降らない予定だよ(^^)\nまた当日の朝の最新の天気予報で雨が降りそうだったら教えるね！"
             end
 
           # 使い方
           when /.*(使い方|使いかた|つかい方|つかいかた).*/
-            push = "「今日の天気」って聞いてくれたら東京の降水確率と気温を教えられるよ(^^)\n明日と明後日もだいたいだったらわかるよ。でも変わっちゃうからその日になったらまた聞いてほしいな。\n「（都道府県名）の天気」も教えられるよ"
+            push = "「今日の天気」って聞いてくれたら東京の降水確率と気温を教えられるよ(^^)\n明日と明後日もだいたいだったらわかるよ。明日は？って感じで聞いてみてね。\nでも変わっちゃうからその日になったらまた聞いてほしいな。\n\n全国の天気も明日までなら教えられるよ!\n「今日の大阪の天気」って感じで聞いてね。"
 
 
           # おまけ
