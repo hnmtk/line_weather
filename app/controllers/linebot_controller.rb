@@ -58,9 +58,9 @@ class LinebotController < ApplicationController
               i += 1
             end
             locals.each do |local|
-              local_weather << "#{local[0]}の降水確率はこんな感じ！\n    6〜12時  #{local[1]}％\n  12〜18時  #{local[2]}％\n  18〜24時  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらいだよ\n"
+              local_weather << "#{local[0]}の降水確率はこんな感じ！\n  6時  12時  18時\n #{local[1]}％  #{local[2]}％  #{local[3]}％\nそれから気温は #{local[4]}~#{local[5]} °C くらい\n\n"
             end
-            push = "#{name}はね〜\n#{local_weather}"
+            push = "#{name}はね〜\n#{local_weather}だよ"
           when /.*(今日|きょう).*/
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
             mintemp = doc.elements[xpath + 'info/temperature/range[2]l'].text
