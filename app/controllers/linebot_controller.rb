@@ -61,7 +61,6 @@ class LinebotController < ApplicationController
               local_weather << "\n#{local[0]}の降水確率はこんな感じ！\n 6時 ~ 12時 ~ 18時\n #{local[1]}％ ~ #{local[2]}％ ~ #{local[3]}％\n気温は #{local[4]}~#{local[5]} °C\n"
             end
             push = "#{name}はね〜#{local_weather}くらいだよ(^^)"
-          end
 
           when /.*(今日|きょう).*/
             maxtemp = doc.elements[xpath + 'info/temperature/range'].text
